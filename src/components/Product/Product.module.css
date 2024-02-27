@@ -1,0 +1,61 @@
+.card_conatiner {
+  width: 250px;
+  padding: 10px;
+  color: black;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  position: relative;
+}
+.card_conatiner:hover .button {
+  display: block;
+}
+.card_conatiner img {
+  padding: 10px;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+.product__price {
+  margin-top: 5px;
+}
+.product__info {
+  height: 100px;
+  margin-bottom: 15px;
+}
+.button {
+  display: none;
+  padding: 5px 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.button:hover {
+  background-color: var(--primary-shade);
+}
+.rating {
+  display: flex;
+  align-items: center;
+  padding: 10px 0px;
+}
+.product_container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* corrected syntax for autofill */
+  max-width: 1450px;
+  margin: 100px auto; /* removed redundant auto value */
+  gap: 50px;
+  justify-items: center;
+}
+
+.product_container section {
+  margin: 0 auto; /* redundant if the section is the direct child of .product_container */
+}
