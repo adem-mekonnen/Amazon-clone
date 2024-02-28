@@ -3,9 +3,9 @@ import CategoryCard from "./CategoryCard";
 import classes from "./Category.module.css";
 const Category = () => {
   return (
-    <section className={classes.category_container}>
-      {CategoryData.map((info) => (
-        <CategoryCard key={info.id} data={info} />
+    <section className={classes.category__container}>
+      {CategoryData.map((infos) => (
+        <CategoryCard key={infos.imgLink} data={infos} />
       ))}
     </section>
   );

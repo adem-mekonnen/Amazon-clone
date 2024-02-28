@@ -3,18 +3,19 @@ import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
       <section className={classes.header_container}>
         {/* logo */}
         <div className={classes.logo_container}>
-          <a href="">
+          <Link to="">
             <img
               src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
               alt="logo"
             />
-          </a>
+          </Link>
           {/* delivery */}
           {/* <br /> */}
           <div className={classes.delivery}>
@@ -41,7 +42,7 @@ const Header = () => {
         <div className={classes.order_container}>
           {/* right side link */}
 
-          <a href="" className={classes.language}>
+          <Link to="" className={classes.language}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/255px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png"
               alt="usa flag"
@@ -49,27 +50,48 @@ const Header = () => {
             <select>
               <option value="">EN</option>
             </select>
-          </a>
+          </Link>
           {/* three component */}
-          <a href="">
+          <Link to="/auth" className={classes.hoverable_link}>
             <div>
               <p>Sign In</p>
               <span>Account & list</span>
             </div>
-          </a>
+            <div className={classes.hover_content}>
+              <p>New customer? Start here.</p>
+              <ul>
+                <li>Your Lists</li>
+                <li>Create a List</li>
+                <li>Find a List or Registry</li>
+                <li>Your Account</li>
+                <li>Account</li>
+                <li>Orders</li>
+                <li>Recommendations</li>
+                <li>Browsing History</li>
+                <li>Watchlist</li>
+                <li>Video Purchases & Rentals</li>
+                <li>Kindle Unlimited</li>
+                <li>Content & Devices</li>
+                <li>Subscribe & Save Items</li>
+                <li>Memberships & Subscriptions</li>
+                <li>Music Library</li>
+              </ul>
+            </div>
+          </Link>
+
           {/* orders */}
-          <a href="">
+          <Link to="/orders">
             <p>Returns</p>
             <span>& Orders</span>
-          </a>
+          </Link>
           {/* carts */}
-          <a href="" className={classes.cart}>
+          <Link to="/cart" className={classes.cart}>
             <BiCart size={35} />
             <span>0</span>
-          </a>
+          </Link>
         </div>
       </section>
-      <LowerHeader />
+      {/* <LowerHeader /> */}
     </>
   );
 };

@@ -144,3 +144,23 @@
     display: none;
   }
 }
+.hoverable_link {
+  position: relative;
+  display: inline-block;
+}
+
+.hover_content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 33%;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.hoverable_link:hover .hover_content {
+  display: block;
+}
