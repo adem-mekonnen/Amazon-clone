@@ -3,22 +3,27 @@ import { Rating } from "@mui/material";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 import classes from "./Product.module.css";
 import { Link } from "react-router-dom";
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
   // Check if product is available
   if (!product) {
     return null; // Return null or any placeholder when product is missing
   }
 
   // Destructure product object to access its properties
-  const { title, image, rating, price, id } = product;
+  const { title, image, rating, price, id, description } = product;
 
   return (
-    <div className={`${classes.card_conatiner}`}>
+    <div
+      className={`${classes.card_conatiner} ${
+        flex ? classes.product__flexed : ""
+      }`}
+    >
       <Link to={`/products/${id}`}>
         <img src={image} alt={title} />
       </Link>
       <div>
         <h2>{title}</h2>
+        {renderDesc && <div style={{ maxWidth: "750px" }}>{description}</div>}
         <div className={`${classes.rating}`}>
           {/* Render Rating component if rating is available */}
           {rating && <Rating value={rating.rate} precision={0.1} />}
@@ -43,6 +48,8 @@ ProductCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    flex: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     rating: PropTypes.shape({
       rate: PropTypes.number,
       count: PropTypes.number,
