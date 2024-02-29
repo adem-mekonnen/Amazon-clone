@@ -1,0 +1,69 @@
+/* Applies the box-sizing property to all elements within the #navbar element */
+#navbar * {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
+}
+
+/* Sets the box-sizing property for all elements on the page */
+* {
+  -moz-box-sizing: border-box;
+}
+
+/* Styles related to the toaster notification component */
+/*.glow-toaster-slot-default {
+    background: #fff;
+    color: inherit;
+}
+.glow-toaster {
+    font-family: inherit;
+    padding: 6px 18px;
+}*/
+
+/* Styles related to the navigation flyout menu */
+.nav-flyout {
+  -moz-box-sizing: border-box;
+  padding: 14px;
+  margin: 0;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
+  -ms-user-select: none;
+  zoom: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  font-size: 13px;
+  font-family: inherit;
+  line-height: normal;
+}
+
+/* Styles related to the #navbar element */
+#navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 198;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1em;
+  display: block;
+  zoom: 1;
+  min-width: 1000px;
+}
+
+/* Styles related to the body of the page */
+/*.a-ember body {
+    font-family: "Amazon Ember",Arial,sans-serif;
+}*/
+body {
+  color: #0f1111;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Sets the base font size for the HTML document and disables text size adjustment in WebKit browsers */
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}

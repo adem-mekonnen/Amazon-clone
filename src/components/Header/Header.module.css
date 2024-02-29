@@ -164,3 +164,8 @@
 .hoverable_link:hover .hover_content {
   display: block;
 }
+.fixed {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}

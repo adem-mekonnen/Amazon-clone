@@ -1,12 +1,20 @@
+/* eslint-disable no-unused-vars */
+import { useContext } from "react";
 import classes from "./Header.module.css";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router-dom";
+import { DataContext } from "../DataProvider/DataProvider";
+import "./global.css";
 const Header = () => {
+  const [{ user, basket }, dispatch] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
   return (
-    <>
+    <section className={classes.fixed}>
       <section className={classes.header_container}>
         {/* logo */}
         <div className={classes.logo_container}>
@@ -87,12 +95,12 @@ const Header = () => {
           {/* carts */}
           <Link to="/cart" className={classes.cart}>
             <BiCart size={35} />
-            <span>0</span>
+            <span>{totalItem}</span>
           </Link>
         </div>
       </section>
-      {/* <LowerHeader /> */}
-    </>
+      <LowerHeader />
+    </section>
   );
 };
 

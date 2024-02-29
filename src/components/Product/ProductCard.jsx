@@ -1,10 +1,28 @@
+/* eslint-disable react/prop-types */
 import PropTypes from "prop-types"; // Import PropTypes for prop type validation
+import { useContext } from "react";
 import { Rating } from "@mui/material";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 import classes from "./Product.module.css";
 import { Link } from "react-router-dom";
+import { DataContext } from "../DataProvider/DataProvider";
+import { Type } from "../../Utility/action.type";
 const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
   // Check if product is available
+  const [state, dispatch] = useContext(DataContext);
+  const addToCart = () => {
+    dispatch({
+      type: Type.ADD_TO_BASKET,
+      item: {
+        image,
+        title,
+        id,
+        rating,
+        price,
+        description,
+      },
+    });
+  };
   if (!product) {
     return null; // Return null or any placeholder when product is missing
   }
@@ -36,7 +54,11 @@ const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
           {price && <CurrencyFormat amount={price} />}{" "}
           {/* Added null check for price */}
         </div>
-        <button className={`${classes.button}`}>add to cart</button>
+        {renderAdd && (
+          <button className={classes.button} onClick={addToCart}>
+            add to cart
+          </button>
+        )}
       </div>
     </div>
   );
