@@ -1,28 +1,82 @@
-//import Layout from "../../../components/Layout/Layout";
+/* eslint-disable no-undef */
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Signup.module.css";
-import { Button } from "@mui/material";
+import { auth } from "../../../Utility/firebase";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { DataContext } from "../../DataProvider/DataProvider";
+import { Type } from "../../../Utility/action.type";
 const Auth = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [{ user }, dispatch] = useContext(DataContext);
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    console.log("Email:", newEmail);
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    console.log("Password:", newPassword);
+  };
+  const authHandler = async (e) => {
+    e.preventDefault();
+    console.log(e.target.name);
+    if (e.target.name == "signin") {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userinfo) => {
+          dispatch({
+            type: Type.SET_USER,
+            user: userinfo.user,
+          });
+          console.log(userinfo);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userinfo) => {
+          // console.log(userinfo);
+          dispatch({
+            type: Type.SET_USER,
+            user: userinfo.user,
+          });
+          console.log(userinfo);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // }
+    }
+  };
   return (
     <section className={classes.logo}>
-      {/* logo */}
       <Link>
         <img
           src="https://cdn.pixabay.com/photo/2021/08/10/16/02/amazon-6536326_960_720.png"
           alt="amazon logo"
         />
       </Link>
-      {/* form */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
         <form action="">
-          <div className="">
+          <div>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
               placeholder="adem@gmail.com"
+              value={email}
+              onChange={handleEmailChange}
             />
           </div>
           <div>
@@ -32,18 +86,32 @@ const Auth = () => {
               id="password"
               name="password"
               placeholder="Enter your password"
+              value={password}
+              onChange={handlePasswordChange}
             />
           </div>
         </form>
-        {/* agrmeent */}
         <p>
           By continuing, you agree to Amazon's Conditions of Use and Privacy
           Notice.
         </p>
 
-        <button className={classes.login_signInButton}>Sign In</button>
-        {/* create account */}
-        <button className={classes.registerButton}>create your account</button>
+        <button
+          type="submit"
+          name="signin"
+          onClick={authHandler}
+          className={classes.login_signInButton}
+        >
+          Sign In
+        </button>
+        <button
+          type="submit"
+          name="signup"
+          onClick={authHandler}
+          className={classes.registerButton}
+        >
+          create your account
+        </button>
       </div>
     </section>
   );
