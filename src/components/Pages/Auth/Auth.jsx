@@ -119,8 +119,11 @@ const Auth = () => {
           onClick={authHandler}
           className={classes.login_signInButton}
         >
-          {loading.signIn ? <ClipLoader color="#000" size={15} /> : " Sign In"}
-          Sign In
+          {loading.signIn ? (
+            <ClipLoader color="#000" size={15}></ClipLoader>
+          ) : (
+            "Sign In "
+          )}
         </button>
         <button
           type="submit"
