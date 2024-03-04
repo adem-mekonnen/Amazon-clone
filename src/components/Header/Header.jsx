@@ -7,6 +7,7 @@ import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/firebase";
 import "./global.css";
 const Header = () => {
   const [{ user, basket }, dispatch] = useContext(DataContext);
@@ -18,7 +19,7 @@ const Header = () => {
       <section className={classes.header_container}>
         {/* logo */}
         <div className={classes.logo_container}>
-          <Link to="">
+          <Link to="/">
             <img
               src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
               alt="logo"
@@ -60,12 +61,12 @@ const Header = () => {
             </select>
           </Link>
           {/* three component */}
-          <Link to="/auth" className={classes.hoverable_link}>
-            <div>
+          <Link to={!user && "/auth"}>
+            {/* <div>
               <p>Sign In</p>
               <span>Account & list</span>
-            </div>
-            <div className={classes.hover_content}>
+            </div> */}
+            {/* <div className={classes.hover_content}>
               <p>New customer? Start here.</p>
               <ul>
                 <li>Your Lists</li>
@@ -84,7 +85,21 @@ const Header = () => {
                 <li>Memberships & Subscriptions</li>
                 <li>Music Library</li>
               </ul>
-            </div>
+            </div> */}
+
+            <>
+              {user ? (
+                <>
+                  <p>Hello{user?.email?.split("@")[0]}</p>
+                  <span onClick={() => auth.signOut()}> Sign Out</span>
+                </>
+              ) : (
+                <>
+                  <p>Hello, Sign In</p>
+                  <span> Account && Lists</span>
+                </>
+              )}
+            </>
           </Link>
 
           {/* orders */}
